@@ -59,14 +59,9 @@ public class MainActivity extends AppCompatActivity {
         // add-write text into file
         try {
             textmag1.getText().toString();
-            //要写这个文件
-            FileOutputStream fileout = openFileOutput("mytextfile.txt", MODE_PRIVATE);
-            //用这个方法写文件
+            FileOutputStream fileout = openFileOutput(textmag1.getText().toString(), MODE_PRIVATE);
             OutputStreamWriter outputWriter = new OutputStreamWriter(fileout);
-            //开始写文件
             outputWriter.write(textmsg.getText().toString());
-            //关闭wf
-
             outputWriter.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -74,19 +69,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void ReadBtn(View v) {
-        //reading text from file
         try {
             textmag1.getText().toString();
-            //要读这个文件
-            FileInputStream fileIn = openFileInput("mytextfile.txt");
-            //用这个方法读
+            FileInputStream fileIn = openFileInput(textmag1.getText().toString());
             InputStreamReader InputRead = new InputStreamReader(fileIn);
 
             char[] inputBuffer = new char[READ_BLOCK_SIZE];
             String s = ""; int charRead;
 
             while ((charRead = InputRead.read(inputBuffer))>0) {
-                // char to string conversion
                 String readstring = String.copyValueOf(inputBuffer,0,charRead);
                 s +=readstring;
             }
@@ -105,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
             textmag1.getText().toString();
             String dir = getFilesDir().getAbsolutePath();
             mainView.setText(dir);
-            File file = new File(dir, "mytextfile.txt");
+            File file = new File(dir, textmag1.getText().toString());
             file.delete();
         } catch (Exception e) {
             e.printStackTrace();
@@ -119,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
             textmag1.getText().toString();
             File sdCard= Environment.getExternalStorageDirectory();
             File directory= new File(sdCard.getAbsolutePath()+"MyFiles");
-            File file=new File(directory,"textfile.txt");
+            File file=new File(directory,textmag1.getText().toString());
             FileOutputStream Fln = new FileOutputStream(file);
             OutputStreamWriter oWriter = new OutputStreamWriter(Fln);
             oWriter.write(textmsg.getText().toString());
@@ -135,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
             textmag1.getText().toString();
             File sdCard= Environment.getExternalStorageDirectory();
             File directory= new File(sdCard.getAbsolutePath()+"MyFiles");
-            File file=new File(directory,"textfile.txt");
+            File file=new File(directory,textmag1.getText().toString());
             FileInputStream fIn = new FileInputStream(file);
             InputStreamReader isr=new InputStreamReader(fIn);
 
@@ -162,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
 
             File sdCard= Environment.getExternalStorageDirectory();
             File directory= new File(sdCard.getAbsolutePath()+"MyFiles");
-            File file=new File(directory,"textfile.txt");
+            File file=new File(directory,textmag1.getText().toString());
             file.delete();
         } catch (Exception e) {
             e.printStackTrace();
